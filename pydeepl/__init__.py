@@ -1,1 +1,1 @@
-from .pydeepl import translate
+from .pydeepl import translate, TranslationError

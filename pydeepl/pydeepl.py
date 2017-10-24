@@ -1,5 +1,4 @@
 import requests
-import json
 
 BASE_URL = 'https://www.deepl.com/jsonrpc'
 
@@ -23,9 +22,11 @@ class TranslationError(Exception):
         super(TranslationError, self).__init__(message)
 
 
-def translate(text, to_lang, from_lang='auto'):
+def translate(text, to_lang, from_lang='auto', json=False):
     if text is None:
         raise TranslationError('Text can\'t be None.')
+    if len(text) > 5000:
+        raise TranslationError('Text too long (limited to 5000 characters).')
     if to_lang not in LANGUAGES.keys():
         raise TranslationError('Language {} not available.'.format(to_lang))
     if from_lang is not None and from_lang not in LANGUAGES.keys():
@@ -52,7 +53,7 @@ def translate(text, to_lang, from_lang='auto'):
         },
     }
 
-    response = json.loads(requests.post(BASE_URL, json=parameters).text)
+    response = requests.post(BASE_URL, json=parameters).json()
 
     if 'result' not in response:
         raise TranslationError('DeepL call resulted in a unknown result.')
@@ -64,4 +65,6 @@ def translate(text, to_lang, from_lang='auto'):
             or translations[0]['beams'][0]['postprocessed_sentence'] is None:
         raise TranslationError('No translations found.')
 
+    if json:
+        return response
     return translations[0]['beams'][0]['postprocessed_sentence']

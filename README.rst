@@ -1,7 +1,7 @@
 pydeepl
 =======
 
-A python API wrapper for deepl.com translating service.
+A Python API wrapper for the `DeepL <https://www.deepl.com/>`_ translation service.
 
 Installation
 ------------
@@ -16,7 +16,7 @@ Getting Started
 Python Version
 ~~~~~~~~~~~~~~
 
-Pydeepl was written for both python 2 and python 3.
+Pydeepl was written for both Python 2 and Python 3.
 
 Add pydeepl to your application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,7 +61,7 @@ Pydeepl supports these languages:
 | PL     | Polish          |
 +--------+-----------------+
 
-    Note that auto detection only is possible for the source language.
+    Note that auto detection is only possible for the source language.
 
 Disclaimer
 ----------

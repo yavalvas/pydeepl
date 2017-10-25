@@ -1,5 +1,7 @@
 pydeepl
 =======
+.. image:: https://api.travis-ci.org/EmilioK97/pydeepl.svg?branch=master
+
 
 A Python API wrapper for the `DeepL <https://www.deepl.com/>`_ translation service.
 

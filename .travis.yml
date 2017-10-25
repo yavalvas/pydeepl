@@ -4,7 +4,7 @@ python:
   - "2.7"
   - "3.2"
   - "3.3"
-script: python tests/test.py
+script: python -m tests.test
 branches:
   only:
     - master

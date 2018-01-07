@@ -14,13 +14,49 @@ LANGUAGES = {
 }
 
 JSONRPC_VERSION = '2.0'
-DEEPL_METHOD = 'LMT_handle_jobs'
+
+
+class SplittingError(Exception):
+    def __init__(self, message):
+        super(SplittingError, self).__init__(message)
+
+def split_sentences(text, lang='auto', json=False):
+    if text is None:
+        raise SplittingError('Text can\'t be be None.')
+    if lang not in LANGUAGES.keys():
+        raise SplittingError('Language {} not available.'.format(lang))
+
+    parameters = {
+        'jsonrpc': JSONRPC_VERSION,
+        'method': 'LMT_split_into_sentences',
+        'params': {
+            'texts': [
+                text
+            ],
+            'lang': {
+                'lang_user_selected': lang
+            },
+        },
+    }
+
+    response = requests.post(BASE_URL, json=parameters).json()
+
+    if 'result' not in response:
+        raise SplittingError('DeepL call resulted in a unknown result.')
+
+    splitted_texts = response['result']['splitted_texts']
+
+    if len(splitted_texts) == 0:
+        raise SplittingError('Text could not be splitted.')
+
+    if json:
+        return response
+    return splitted_texts[0]
 
 
 class TranslationError(Exception):
     def __init__(self, message):
         super(TranslationError, self).__init__(message)
-
 
 def translate(text, to_lang, from_lang='auto', json=False):
     if text is None:
@@ -34,7 +70,7 @@ def translate(text, to_lang, from_lang='auto', json=False):
 
     parameters = {
         'jsonrpc': JSONRPC_VERSION,
-        'method': DEEPL_METHOD,
+        'method': 'LMT_handle_jobs',
         'params': {
             'jobs': [
                 {

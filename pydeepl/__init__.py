@@ -1,1 +1,1 @@
-from .pydeepl import translate, TranslationError
+from .pydeepl import split_sentences, SplittingError, translate, TranslationError

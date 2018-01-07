@@ -8,7 +8,7 @@ def readme():
 setup(
     name='pydeepl',
     packages=['pydeepl'],
-    version='0.9',
+    version='0.10',
     description='A python API wrapper for DeepL translating service.',
     long_description=readme(),
     author='Emilio Carrión Peñalba, frinkelpi',

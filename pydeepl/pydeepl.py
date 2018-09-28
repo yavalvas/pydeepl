@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = 'https://www.deepl.com/jsonrpc'
+BASE_URL = 'https://www2.deepl.com/jsonrpc'
 
 LANGUAGES = {
     'auto': 'Auto',

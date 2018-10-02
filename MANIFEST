@@ -2,4 +2,5 @@
 README.rst
 setup.py
 pydeepl/__init__.py
+pydeepl/__main__.py
 pydeepl/pydeepl.py

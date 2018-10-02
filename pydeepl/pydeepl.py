@@ -20,6 +20,7 @@ class SplittingError(Exception):
     def __init__(self, message):
         super(SplittingError, self).__init__(message)
 
+
 def split_sentences(text, lang='auto', json=False):
     if text is None:
         raise SplittingError('Text can\'t be be None.')
@@ -57,6 +58,7 @@ def split_sentences(text, lang='auto', json=False):
 class TranslationError(Exception):
     def __init__(self, message):
         super(TranslationError, self).__init__(message)
+
 
 def translate(text, to_lang, from_lang='auto', json=False):
     if text is None:
